@@ -42,19 +42,6 @@ body {
 }
 
 /* ヌルの札：ノイズのように揺れる文字 */
-@keyframes glitch {
-  0%, 92%, 100% { transform: translate(0); clip-path: inset(0 0 0 0); }
-  93% { transform: translate(-1px, 1px); clip-path: inset(20% 0 40% 0); }
-  95% { transform: translate(1px, -1px); clip-path: inset(60% 0 10% 0); }
-  97% { transform: translate(-1px, 0); clip-path: inset(10% 0 70% 0); }
-}
-.glitch {
-  animation: glitch 2.6s steps(1) infinite;
-}
-.null-noise {
-  background-image: repeating-linear-gradient(0deg, rgba(127, 127, 127, 0.18) 0 1px, transparent 1px 3px);
-}
-
 @keyframes pulse-ring {
   0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
   50% { box-shadow: 0 0 0 6px rgba(34, 211, 238, 0); }
@@ -64,7 +51,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .glitch,
   .pulse-ring {
     animation: none;
   }

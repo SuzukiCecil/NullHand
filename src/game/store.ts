@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { cpuChoose, cpuSet, LEVELS, type Level } from './cpu'
 import { choose, createGame, nextRound, setPairs } from './engine'
-import { CARDS, type Card, type GameState, type Hand, type Pair, type Pick } from './types'
+import { type Card, type GameState, type Hand, type Pair, type Pick } from './types'
 
 /** 演出の待ち時間（ms） */
 export const TIMING = { open: 700, clash: 900 }
@@ -10,8 +10,11 @@ export interface Settings {
   level: Level
 }
 
-/** 手札を1枚ずつの並び（グー→チョキ→パー→ヌル）にする */
-export const handCards = (h: Hand): Card[] => CARDS.flatMap((c) => Array<Card>(h[c]).fill(c))
+/** 手札の並び：ヌルを先頭（上の段）に、続けてグー→チョキ→パー */
+const HAND_ORDER: Card[] = ['null', 'rock', 'scissors', 'paper']
+
+/** 手札を1枚ずつの並びにする */
+export const handCards = (h: Hand): Card[] => HAND_ORDER.flatMap((c) => Array<Card>(h[c]).fill(c))
 
 interface Store {
   game: GameState

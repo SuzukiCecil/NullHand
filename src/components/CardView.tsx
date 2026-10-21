@@ -22,14 +22,13 @@ const SIZE: Record<CardSize, { box: string; icon: number; label: string }> = {
 export function CardFace({ card, side, size = 'md' }: { card: Card; side: Side; size?: CardSize }) {
   const s = SIZE[size]
   const Icon = CARD_ICON[card]
-  const isNull = card === 'null'
   return (
     <div
       aria-label={CARD_NAME[card]}
-      className={`relative flex flex-col items-center justify-center gap-1 border-2 shadow-[0_3px_0_rgba(0,0,0,0.5)] ${s.box} ${SET_STYLE[side].face} ${isNull ? 'null-noise' : ''}`}
+      className={`relative flex flex-col items-center justify-center gap-1 border-2 shadow-[0_3px_0_rgba(0,0,0,0.5)] ${s.box} ${SET_STYLE[side].face}`}
     >
-      <Icon size={s.icon} strokeWidth={2.2} className={isNull ? 'glitch opacity-60' : ''} />
-      <span className={`font-black tracking-wider ${s.label} ${isNull ? 'glitch font-mono opacity-70' : ''}`}>{isNull ? 'NULL' : CARD_NAME[card]}</span>
+      <Icon size={s.icon} strokeWidth={2.2} />
+      <span className={`font-black tracking-wider ${s.label}`}>{card === 'null' ? 'NULL' : CARD_NAME[card]}</span>
     </div>
   )
 }
