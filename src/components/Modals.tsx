@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { CircleHelp, RotateCcw, Undo2, X } from 'lucide-react'
+import { CircleHelp, RotateCcw, Undo2, X, LayoutGrid } from 'lucide-react'
+import { HUB_URL } from '../hub'
 import type { ReactNode } from 'react'
 import { LEVELS, type Level } from '../game/cpu'
 import { CARD_NAME, SIDE_NAME } from '../game/engine'
@@ -82,9 +83,14 @@ export function StartModal({ onRules }: { onRules: () => void }) {
       <button type="button" onClick={start} className="mt-5 w-full rounded-xl bg-[var(--accent)] py-3 font-black text-black shadow hover:brightness-110">
         勝負を始める
       </button>
-      <button type="button" onClick={onRules} className="mx-auto mt-3 flex items-center gap-1 text-sm font-bold text-[var(--muted)] hover:text-[var(--text)]">
-        <CircleHelp size={16} /> 遊び方
-      </button>
+      <div className="mt-3 flex justify-center gap-5 text-sm font-bold text-[var(--muted)]">
+        <button type="button" onClick={onRules} className="flex items-center gap-1 hover:text-[var(--text)]">
+          <CircleHelp size={16} /> 遊び方
+        </button>
+        <a href={HUB_URL} className="flex items-center gap-1 hover:text-[var(--text)]">
+          <LayoutGrid size={16} /> ゲーム一覧へ
+        </a>
+      </div>
     </Modal>
   )
 }
